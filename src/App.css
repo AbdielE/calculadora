@@ -3,6 +3,10 @@ table {
 }
 
 td{
-    border: 1px solid black;
     text-align: center;
+    width: 100px;
+}
+
+button{
+    margin-top: 5px;
 }
