@@ -6,11 +6,11 @@ const buttonClasses = "btn btn-primary w-75";
 function App() {
   const [screen, setScreen] = useState("0"); //Primera es la variable de estado, la segunda permite modificar la variable de estado y el tercero es el valor inicial de la variable.
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (valor) => {
     if (screen === "0"){
-      setScreen(9)
+      setScreen(valor)
     } else{
-      setScreen( `${screen}9`)}
+      setScreen( `${screen + valor}`)}
     }
   return (
     <div className="app">
@@ -56,20 +56,22 @@ function App() {
         <tr>
           <td>
             <button type='button'
-              className={buttonClasses}>
+              className={buttonClasses}
+              onClick = {()=> handleButtonClick("7")}>
               7
             </button>
           </td>
           <td>
             <button type='button'
-              className={buttonClasses}>
+              className={buttonClasses}
+              onClick = {()=> handleButtonClick("8")}>
               8
             </button>
           </td>
           <td>
             <button type='button'
               className={buttonClasses}
-              onClick = {handleButtonClick}>
+              onClick = {()=> handleButtonClick("9")}>
               9
             </button>
           </td>
