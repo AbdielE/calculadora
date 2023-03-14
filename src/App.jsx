@@ -18,6 +18,11 @@ function App() {
       setScreen( `${screen}${value}`)
     }
   }
+  const handleButtonClick2 = () => {
+    if (!screen.includes(".")){
+      setScreen( `${screen}.`)
+    }
+  }
   return (
     <div className="app">
       <h1 className="shadow-sm">Calculadora</h1>
@@ -173,7 +178,8 @@ function App() {
           </td>
           <td>
             <button type='button'
-              className={buttonClasses}>
+              className={buttonClasses}
+              onClick = {handleButtonClick2}>
               .
             </button>
           </td>
