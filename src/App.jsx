@@ -4,14 +4,20 @@ import './App.css'
 const buttonClasses = "btn btn-primary w-75";
 
 function App() {
-  const [screen, setScreen] = useState("0"); //Primera es la variable de estado, la segunda permite modificar la variable de estado y el tercero es el valor inicial de la variable.
+  const [screen, setScreen] = useState("0"); //Primera es la variable de estado, la segunda permite modificar la variable de estado y el tercero es el value inicial de la variable.
 
-  const handleButtonClick = (valor) => {
-    if (screen === "0"){
-      setScreen(valor)
-    } else{
-      setScreen( `${screen + valor}`)}
+  const handleButtonClick = (e) => {
+    const {value} =e.target;
+    if(value==="C"){
+      setScreen("0");
+      return;
     }
+    if (screen === "0"){
+      setScreen(value)
+    } else{
+      setScreen( `${screen}${value}`)
+    }
+  }
   return (
     <div className="app">
       <h1 className="shadow-sm">Calculadora</h1>
@@ -29,7 +35,9 @@ function App() {
         <tr>
           <td>
             <button type='button'
-              className={buttonClasses}>
+              className={buttonClasses}
+              value="C"
+              onClick = {(e)=> handleButtonClick(e)}>
               C
             </button>
           </td>
@@ -57,21 +65,24 @@ function App() {
           <td>
             <button type='button'
               className={buttonClasses}
-              onClick = {()=> handleButtonClick("7")}>
+              value="7"
+              onClick = {(e)=> handleButtonClick(e)}>
               7
             </button>
           </td>
           <td>
             <button type='button'
               className={buttonClasses}
-              onClick = {()=> handleButtonClick("8")}>
+              value="8"
+              onClick = {(e)=> handleButtonClick(e)}>
               8
             </button>
           </td>
           <td>
             <button type='button'
               className={buttonClasses}
-              onClick = {()=> handleButtonClick("9")}>
+              value="9"
+              onClick = {(e)=> handleButtonClick(e)}>
               9
             </button>
           </td>
@@ -87,19 +98,25 @@ function App() {
         <tr>
           <td>
             <button type='button'
-              className={buttonClasses}>
+              className={buttonClasses}
+              value="4"
+              onClick = {(e)=> handleButtonClick(e)}>
               4
             </button>
           </td>
           <td>
             <button type='button'
-              className={buttonClasses}>
+              className={buttonClasses}
+              value="5"
+              onClick = {(e)=> handleButtonClick(e)}>
               5
             </button>
           </td>
           <td>
             <button type='button'
-              className={buttonClasses}>
+              className={buttonClasses}
+              value="6"
+              onClick = {(e)=> handleButtonClick(e)}>
               6
             </button>
           </td>
@@ -108,19 +125,25 @@ function App() {
         <tr>
           <td>
             <button type='button'
-              className={buttonClasses}>
+              className={buttonClasses}
+              value="1"
+              onClick = {(e)=> handleButtonClick(e)}>
               1
             </button>
           </td>
           <td>
             <button type='button'
-              className={buttonClasses}>
+              className={buttonClasses}
+              value="2"
+              onClick = {(e)=> handleButtonClick(e)}>
               2
             </button>
           </td>
           <td>
             <button type='button'
-              className={buttonClasses}>
+              className={buttonClasses}
+              value="3"
+              onClick = {(e)=> handleButtonClick(e)}>
               3
             </button>
           </td>
@@ -142,7 +165,9 @@ function App() {
           </td>
           <td>
             <button type="button"
-            className={buttonClasses}>
+            className={buttonClasses}
+            value="0"
+            onClick = {(e)=> handleButtonClick(e)}>
               0
             </button>
           </td>
