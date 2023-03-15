@@ -8,21 +8,29 @@ function App() {
 
   const handleButtonClick = (e) => {
     const {value} =e.target;
+    if(value==="."){
+      if(screen.includes("."))
+      return;
+    }
     if(value==="C"){
       setScreen("0");
       return;
     }
-    if (screen === "0"){
-      setScreen(value)
-    } else{
-      setScreen( `${screen}${value}`)
+    if (screen === "0" && value!=='.'){
+      setScreen(value);
+      return;
     }
+    setScreen( `${screen}${value}`)
   }
-  const handleButtonClick2 = () => {
-    if (!screen.includes(".")){
-      setScreen( `${screen}.`)
+  const handleDelButtonClick = () => {
+    if(screen.length===1){
+      setScreen("0");
+      return;
     }
+    setScreen(screen.slice(0,-1));
+
   }
+
   return (
     <div className="app">
       <h1 className="shadow-sm">Calculadora</h1>
@@ -164,8 +172,9 @@ function App() {
         <tr>
           <td>
             <button type="button"
-            className={buttonClasses}>
-              {'<-'}
+            className={buttonClasses}
+            onClick={handleDelButtonClick}>
+              DEL
             </button>
           </td>
           <td>
@@ -178,8 +187,9 @@ function App() {
           </td>
           <td>
             <button type='button'
-              className={buttonClasses}
-              onClick = {handleButtonClick2}>
+            className={buttonClasses}
+            value="."
+            onClick = {(e)=> handleButtonClick(e)}>
               .
             </button>
           </td>
