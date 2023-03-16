@@ -4,6 +4,8 @@ import './App.css'
 const buttonClasses = "btn btn-primary w-75";
 
 function App() {
+  const [number1, setNumber1] = useState("");
+  const [clearScreen, setClearScreen] = useState(false);
   const [screen, setScreen] = useState("0"); //Primera es la variable de estado, la segunda permite modificar la variable de estado y el tercero es el value inicial de la variable.
 
   const handleButtonClick = (e) => {
@@ -14,6 +16,13 @@ function App() {
     }
     if(value==="C"){
       setScreen("0");
+      return;
+    }
+    ///
+    console.log(number1)
+    if(clearScreen){
+      setScreen(value);
+      setClearScreen(false);
       return;
     }
     if (screen === "0" && value!=='.'){
@@ -30,6 +39,20 @@ function App() {
     setScreen(screen.slice(0,-1));
 
   }
+
+const handleOperationButtonClick = (e) =>{
+  const operator = e.target.value;
+  switch (operator) {
+    case '+':
+      setNumber1(screen);
+      console.log("Suma")
+      break;
+  
+    default:
+      break;
+  }
+  setClearScreen(true);
+}
 
   return (
     <div className="app">
@@ -102,8 +125,10 @@ function App() {
           <td rowSpan={2}>
             <button type="button"
             className={buttonClasses}
-            style={{height:"80px"}}>
-              +
+            style={{height:"80px"}}
+            value="+"
+            onClick = {(e)=> handleOperationButtonClick(e)}>
+            +
             </button>
           </td>
         </tr>
