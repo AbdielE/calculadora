@@ -4,6 +4,7 @@ import './App.css'
 const buttonClasses = "btn btn-primary w-75";
 
 function App() {
+  const [operator, setOperator] = useState("");
   const [number1, setNumber1] = useState("");
   const [clearScreen, setClearScreen] = useState(false);
   const [screen, setScreen] = useState("0"); //Primera es la variable de estado, la segunda permite modificar la variable de estado y el tercero es el value inicial de la variable.
@@ -39,20 +40,37 @@ function App() {
     setScreen(screen.slice(0,-1));
 
   }
-
-const handleOperationButtonClick = (e) =>{
-  const operator = e.target.value;
-  switch (operator) {
-    case '+':
-      setNumber1(screen);
-      console.log("Suma")
-      break;
   
-    default:
-      break;
+  const handleOperationButtonClick = (e) =>{
+    setOperator(e.target.value);
+    setNumber1(screen);
+    setClearScreen(true);
   }
-  setClearScreen(true);
-}
+
+  const handleEqualButtonClick = () => {
+    const a = +number1;
+    const b = +screen;
+    switch (operator) {
+      case "+":
+        setScreen((a+b).toString());
+        break;
+
+      case "-":
+        setScreen((a-b).toString());
+        break;
+
+      case "*":
+        setScreen((a*b).toString());
+        break;
+
+      case "/":
+        setScreen((a/b).toString());
+        break;
+      default:
+        break;
+    }
+  }
+
 
   return (
     <div className="app">
@@ -79,19 +97,25 @@ const handleOperationButtonClick = (e) =>{
           </td>
           <td>
             <button type='button'
-              className={buttonClasses}>
+              className={buttonClasses}
+              value="/"
+              onClick = {(e)=> handleOperationButtonClick(e)}>
               /
             </button>
           </td>
           <td>
             <button type='button'
-              className={buttonClasses}>
+              className={buttonClasses}
+              value="*"
+              onClick = {(e)=> handleOperationButtonClick(e)}>
               *
             </button>
           </td>
           <td>
             <button type='button'
-              className={buttonClasses}>
+              className={buttonClasses}
+              value="-"
+              onClick = {(e)=> handleOperationButtonClick(e)}>
               -
             </button>
           </td>
@@ -188,7 +212,8 @@ const handleOperationButtonClick = (e) =>{
           <td rowSpan={2}>
             <button type="button"
             className={buttonClasses}
-            style={{height:"80px"}}>
+            style={{height:"80px"}}
+            onClick={handleEqualButtonClick}>
               =
             </button>
           </td>
