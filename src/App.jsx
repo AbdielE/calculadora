@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css'
+import Button from './components/Button';
 
 const buttonClasses = "btn btn-primary w-75";
 
@@ -19,8 +20,7 @@ function App() {
       setScreen("0");
       return;
     }
-    ///
-    console.log(number1)
+
     if(clearScreen){
       setScreen(value);
       setClearScreen(false);
@@ -130,13 +130,16 @@ function App() {
               7
             </button>
           </td>
-          <td>
-            <button type='button'
+          <td rowSpan={1}>
+            {/*<button type='button'
               className={buttonClasses}
               value="8"
               onClick = {(e)=> handleButtonClick(e)}>
               8
-            </button>
+            </button>*/}
+            <Button 
+              style={buttonClasses} 
+              handleClick ={handleButtonClick}/>
           </td>
           <td>
             <button type='button'
